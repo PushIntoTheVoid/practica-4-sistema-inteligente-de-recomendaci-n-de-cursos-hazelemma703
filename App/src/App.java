@@ -5,10 +5,10 @@ public class App {
         SistemaRecomendacion sistema = new SistemaRecomendacion();
 
         // Crear Courses
-        Course c1 = new Course("Programación en Java");
+        Course c1 = new Course("Programacion en Java");
         c1.agregarTema("programacion");
 
-        Course c2 = new Course("Introducción a IA");
+        Course c2 = new Course("Introduccion a IA");
         c2.agregarTema("ia");
 
         Course c3 = new Course("Bases de Datos");

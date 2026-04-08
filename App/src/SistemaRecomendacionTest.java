@@ -17,7 +17,7 @@ public class SistemaRecomendacionTest {
 
         List<Course> recomendados = sistema.recomendar(est);
         
-        assertFalse(recomendados.isEmpty(), "Debería haber al menos una recomendación");
+        assertFalse(recomendados.isEmpty(), "Debería haber al menos una recomendacion");
         assertEquals("Java", recomendados.get(0).nombre);
     }
 
@@ -32,6 +32,6 @@ public class SistemaRecomendacionTest {
         est.agregarInteres("java");
 
         List<Course> recomendados = sistema.recomendar(est);
-        assertTrue(recomendados.isEmpty(), "No debería haber recomendaciones si no hay coincidencia");
+        assertTrue(recomendados.isEmpty(), "No deberia haber recomendaciones si no hay coincidencia");
     }
 }

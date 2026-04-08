@@ -31,7 +31,6 @@ public class SistemaRecomendacion {
             puntuacion.put(Course, score);
         }
 
-        // Ordenar Courses por puntuación
         List<Map.Entry<Course, Integer>> lista = new ArrayList<>(puntuacion.entrySet());
 
         lista.sort((a, b) -> b.getValue() - a.getValue());
@@ -44,7 +43,6 @@ public class SistemaRecomendacion {
             }
         }
 
-        // Guardar historial
         historial.put(estudiante.nombre, new ArrayList<>(recomendados));
 
         return recomendados;
