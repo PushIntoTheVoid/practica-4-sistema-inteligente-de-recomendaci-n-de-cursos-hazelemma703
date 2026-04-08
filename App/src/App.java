@@ -4,7 +4,6 @@ public class App {
     public static void main(String[] args) throws Exception {
         SistemaRecomendacion sistema = new SistemaRecomendacion();
 
-        // Crear Courses
         Course c1 = new Course("Programacion en Java");
         c1.agregarTema("programacion");
 
@@ -18,12 +17,10 @@ public class App {
         sistema.agregarCourse(c2);
         sistema.agregarCourse(c3);
 
-        // Crear Student
         Student est = new Student("Kevin");
         est.agregarInteres("programacion");
         est.agregarInteres("ia");
 
-        // Recomendación
         List<Course> recomendados = sistema.recomendar(est);
 
         System.out.println("Courses recomendados:");

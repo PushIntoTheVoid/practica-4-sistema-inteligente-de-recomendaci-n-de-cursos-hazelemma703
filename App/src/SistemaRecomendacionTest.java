@@ -17,7 +17,7 @@ public class SistemaRecomendacionTest {
 
         List<Course> recomendados = sistema.recomendar(est);
         
-        assertFalse(recomendados.isEmpty(), "Debería haber al menos una recomendacion");
+        assertFalse(recomendados.isEmpty(), "Deberia haber al menos una recomendacion");
         assertEquals("Java", recomendados.get(0).nombre);
     }
 

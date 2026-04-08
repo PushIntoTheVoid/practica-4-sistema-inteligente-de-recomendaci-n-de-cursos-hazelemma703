@@ -8,12 +8,10 @@ public class SistemaRecomendacionRankingTest {
     public void testOrdenDeRecomendacion() {
         SistemaRecomendacion sistema = new SistemaRecomendacion();
         
-        // Curso con 2 coincidencias (Programacion e IA)
         Course cFull = new Course("Desarrollo Completo");
         cFull.agregarTema("programacion");
         cFull.agregarTema("ia");
         
-        // Curso con 1 coincidencia (IA)
         Course cPartial = new Course("Solo IA");
         cPartial.agregarTema("ia");
         
@@ -26,7 +24,6 @@ public class SistemaRecomendacionRankingTest {
 
         List<Course> recomendados = sistema.recomendar(est);
         
-        // El primer curso en la lista debe ser el que tiene mas coincidencias
         assertEquals("Desarrollo Completo", recomendados.get(0).nombre, 
             "El curso con mas coincidencias debe aparecer primero");
         assertEquals(2, recomendados.size(), "Debe recomendar ambos cursos");
@@ -44,7 +41,6 @@ public class SistemaRecomendacionRankingTest {
 
         sistema.recomendar(est);
 
-        // Validar que el historial guardo la recomendacion para el estudiante
         assertTrue(sistema.historial.containsKey("Luna"), 
             "El historial debe contener el nombre del estudiante");
         assertEquals(1, sistema.historial.get("Luna").size(), 
