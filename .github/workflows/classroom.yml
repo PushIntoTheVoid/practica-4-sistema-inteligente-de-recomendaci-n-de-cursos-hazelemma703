@@ -18,7 +18,7 @@ jobs:
       uses: classroom-resources/autograding-command-grader@v1
       with:
         test-name: Validación de Lógica de Recomendación
-        setup-command: mkdir -p lib && wget -O lib/junit-platform-console-standalone.jar
+        setup-command: mkdir -p App/lib && wget -O App/lib/junit-platform-console-standalone.jar
           https://repo1.maven.org/maven2/org/junit/platform/junit-platform-console-standalone/1.10.0/junit-platform-console-standalone-1.10.0.jar
         command: javac -cp "App/lib/*:App/src" App/src/*.java -d App/bin && java -cp
           "App/bin:App/lib/*" org.junit.platform.console.ConsoleLauncher --select-class
