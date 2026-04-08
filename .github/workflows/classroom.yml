@@ -20,8 +20,9 @@ jobs:
         test-name: Validación de Lógica de Recomendación
         setup-command: mkdir -p lib && wget -O lib/junit-platform-console-standalone.jar
           https://repo1.maven.org/maven2/org/junit/platform/junit-platform-console-standalone/1.10.0/junit-platform-console-standalone-1.10.0.jar
-        command: cd App && javac -cp "lib/*:src" ../src/*.java -d bin && java -cp
-          "bin:lib/*" org.junit.platform.console.ConsoleLauncher --select-class SistemaRecomendacionTest
+        command: javac -cp "App/lib/*:App/src" App/src/*.java -d App/bin && java -cp
+          "App/bin:App/lib/*" org.junit.platform.console.ConsoleLauncher --select-class
+          SistemaRecomendacionTest
         timeout: 10
         max-score: 50
     - name: Validación de Ranking e Historial
@@ -30,8 +31,9 @@ jobs:
       with:
         test-name: Validación de Ranking e Historial
         setup-command: ''
-        command: cd App && javac -cp "lib/*:src" src/*.java -d bin && java -cp "bin:lib/*"
-          org.junit.platform.console.ConsoleLauncher --select-class SistemaRecomendacionRankingTest
+        command: javac -cp "App/lib/*:App/src" App/src/*.java -d App/bin && java -cp
+          "App/bin:App/lib/*" org.junit.platform.console.ConsoleLauncher --select-class
+          SistemaRecomendacionRankingTest
         timeout: 10
         max-score: 50
     - name: Autograding Reporter
