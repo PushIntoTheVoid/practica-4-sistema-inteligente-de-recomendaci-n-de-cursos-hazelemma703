@@ -1,4 +1,5 @@
 import java.util.List;
+import java.util.function.Function;
 
 public class App {
     public static void main(String[] args) throws Exception {
@@ -28,5 +29,11 @@ public class App {
         for (Course c : recomendados) {
             System.out.println("- " + c.nombre);
         }
+
+        Function<String, String> toUpperCase = s -> s.toUpperCase();
+        System.out.println("Intereses en mayusculas:");
+        est.intereses.stream()
+                .map(toUpperCase)
+                .forEach(System.out::println);
     }
 }
