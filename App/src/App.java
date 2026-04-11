@@ -35,5 +35,8 @@ public class App {
         est.intereses.stream()
                 .map(toUpperCase)
                 .forEach(System.out::println);
+
+        Function<Integer, Integer> square = x -> x * x;
+        System.out.println("Cuadrado de 5: " + square.apply(5));
     }
 }
