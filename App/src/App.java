@@ -38,5 +38,7 @@ public class App {
 
         Function<Integer, Integer> square = x -> x * x;
         System.out.println("Cuadrado de 5: " + square.apply(5));
+        Function<String, Boolean> isOdd = s -> s.length() % 2 == 0;
+        System.out.println(isOdd("word"));
     }
 }
