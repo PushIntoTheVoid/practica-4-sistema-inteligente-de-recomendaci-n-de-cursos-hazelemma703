@@ -1,0 +1,56 @@
+name: Autograding Tests
+'on':
+- workflow_dispatch
+- repository_dispatch
+permissions:
+  checks: write
+  actions: read
+  contents: read
+jobs:
+  run-autograding-tests:
+    runs-on: ubuntu-latest
+    if: github.actor != 'github-classroom[bot]'
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    - name: Validación de Lógica de Recomendación
+      id: validacion-de-logica-de-recomendacion
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Validación de Lógica de Recomendación
+        setup-command: mkdir -p App/lib && wget -O App/lib/junit-platform-console-standalone.jar
+          https://repo1.maven.org/maven2/org/junit/platform/junit-platform-console-standalone/1.10.0/junit-platform-console-standalone-1.10.0.jar
+        command: javac -cp "App/lib/*:App/src" App/src/*.java -d App/bin && java -cp
+          "App/bin:App/lib/*" org.junit.platform.console.ConsoleLauncher --select-class  RecommendationSystemTest
+        timeout: 10
+        max-score: 50
+    - name: Validación de Ranking e Historial
+      id: validacion-de-ranking-e-historial
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Validación de Ranking e Historial
+        setup-command: mkdir -p App/lib && wget -O App/lib/junit-platform-console-standalone.jar
+          https://repo1.maven.org/maven2/org/junit/platform/junit-platform-console-standalone/1.10.0/junit-platform-console-standalone-1.10.0.jar
+        command: javac -cp "App/lib/*:App/src" App/src/*.java -d App/bin && java -cp
+          "App/bin:App/lib/*" org.junit.platform.console.ConsoleLauncher --select-class
+          SistemaRecomendacionRankingTest
+        timeout: 10
+        max-score: 50
+    - name: Main Method Test
+      id: main-method-test
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Main Method Test
+        setup-command: ''
+        command: javac -cp "App/lib/*:App/src" App/src/*.java -d App/bin && java -cp
+          "App/bin:App/lib/*" org.junit.platform.console.ConsoleLauncher --select-class
+          HelloWorldTest
+        timeout: 10
+    - name: Autograding Reporter
+      uses: classroom-resources/autograding-grading-reporter@v1
+      env:
+        VALIDACION-DE-LOGICA-DE-RECOMENDACION_RESULTS: "${{steps.validacion-de-logica-de-recomendacion.outputs.result}}"
+        VALIDACION-DE-RANKING-E-HISTORIAL_RESULTS: "${{steps.validacion-de-ranking-e-historial.outputs.result}}"
+        MAIN-METHOD-TEST_RESULTS: "${{steps.main-method-test.outputs.result}}"
+      with:
+        runners: validacion-de-logica-de-recomendacion,validacion-de-ranking-e-historial,main-method-test

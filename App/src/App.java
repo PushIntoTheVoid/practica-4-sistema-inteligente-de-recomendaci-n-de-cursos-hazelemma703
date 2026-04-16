@@ -1,0 +1,44 @@
+import java.util.List;
+import java.util.function.Function;
+
+public class App {
+    public static void main(String[] args) throws Exception {
+        SistemaRecomendacion sistema = new SistemaRecomendacion();
+
+        Course c1 = new Course("Programacion en Java");
+        c1.agregarTema("programacion");
+
+        Course c2 = new Course("Introduccion a IA");
+        c2.agregarTema("ia");
+
+        Course c3 = new Course("Bases de Datos");
+        c3.agregarTema("datos");
+
+        sistema.agregarCourse(c1);
+        sistema.agregarCourse(c2);
+        sistema.agregarCourse(c3);
+
+        Student est = new Student("Kevin");
+        est.agregarInteres("programacion");
+        est.agregarInteres("ia");
+
+        List<Course> recomendados = sistema.recomendar(est);
+
+        System.out.println("Courses recomendados:");
+
+        for (Course c : recomendados) {
+            System.out.println("- " + c.nombre);
+        }
+
+        Function<String, String> toUpperCase = s -> s.toUpperCase();
+        System.out.println("Intereses en mayusculas:");
+        est.intereses.stream()
+                .map(toUpperCase)
+                .forEach(System.out::println);
+
+        Function<Integer, Integer> square = x -> x * x;
+        System.out.println("Cuadrado de 5: " + square.apply(5));
+        Function<String, Boolean> isOdd = s -> s.length() % 2 == 0;
+        System.out.println(isOdd("word"));
+    }
+}
